@@ -1,6 +1,6 @@
 # Subsidising Green Hydrogen: domestic hydrogen market model
 
-Interactive version of the domestic-market section of the model in *Subsidising Green Hydrogen: A Multi-Market
+This is the prototype of the interactive version of the domestic-market section of the model in *Subsidising Green Hydrogen: A Multi-Market
 Equilibrium Model for Australia* (Caleb Hudson, Qazi Haque and Firmin Doko Tchatoka, University of Adelaide).
 
 SMR and grid-connected electrolysers compete to meet domestic hydrogen demand. Choose a support instrument, change any
