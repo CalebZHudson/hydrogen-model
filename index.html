@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Domestic Hydrogen Market Model</title>
+  <!-- Runs app.py in the visitor's browser (stlite = Streamlit on Pyodide). No server needed. -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@1.11.0/build/stlite.css" />
+  <style>
+    body { margin: 0; background: #ffffff; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    #loading { max-width: 640px; margin: 18vh auto 0; padding: 0 16px; color: #1f2a44; text-align: center; }
+    #loading h1 { font-size: 1.5rem; margin-bottom: .5rem; }
+    #loading p { color: #5b6475; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <h1>Subsidising Green Hydrogen: the domestic hydrogen market</h1>
+    <p>Loading Python and the model in your browser. The first visit takes about 20 to 40 seconds; later visits are faster.</p>
+  </div>
+  <div id="root"></div>
+  <script type="module">
+    import { mount } from "https://cdn.jsdelivr.net/npm/@stlite/browser@1.11.0/build/stlite.js";
+    mount(
+      {
+        requirements: ["plotly", "scipy"],
+        entrypoint: "app.py",
+        files: {
+          "app.py": { url: "./app.py" },
+          "h2_model.py": { url: "./h2_model.py" },
+        },
+      },
+      document.getElementById("root"),
+    );
+    // hide the loading note once Streamlit has drawn something
+    const obs = new MutationObserver(() => {
+      if (document.querySelector('[data-testid="stApp"], .stApp')) {
+        document.getElementById("loading").remove(); obs.disconnect();
+      }
+    });
+    obs.observe(document.getElementById("root"), { childList: true, subtree: true });
+  </script>
+</body>
+</html>
